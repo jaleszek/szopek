@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140201211313) do
+ActiveRecord::Schema.define(version: 20140201211747) do
+
+  create_table "carts", force: true do |t|
+    t.integer "user_id", null: false
+  end
+
+  add_index "carts", ["user_id"], name: "index_carts_on_user_id"
 
   create_table "items", force: true do |t|
     t.decimal "price", precision: 8, scale: 2, null: false
