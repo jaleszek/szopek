@@ -1,6 +1,6 @@
 class Order < ActiveRecord::Base
   validates :status, presence: true
-  validates :cart_id, presence: true, uniqueness: true
+  validates :cart_id, presence: true
 
   belongs_to :cart
 

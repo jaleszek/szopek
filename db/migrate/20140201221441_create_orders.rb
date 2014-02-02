@@ -5,6 +5,6 @@ class CreateOrders < ActiveRecord::Migration
       t.integer :cart_id, null: false
     end
 
-    add_index :orders, :cart_id, unique: true
+    add_index :orders, :cart_id
   end
 end

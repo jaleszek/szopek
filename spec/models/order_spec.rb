@@ -3,7 +3,6 @@ describe Order do
 
   it { expect(subject).to validate_presence_of(:status) }
   it { expect(subject).to validate_presence_of(:cart_id) }
-  it { expect(create(:order)).to validate_uniqueness_of(:cart_id) }
   it { expect(subject).to belong_to(:cart) }
 
   it 'starts from :open status' do

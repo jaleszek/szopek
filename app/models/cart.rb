@@ -6,6 +6,7 @@ class Cart < ActiveRecord::Base
   belongs_to :user
   has_many :cart_items
   has_many :items, through: :cart_items
+  has_many :orders
 
   def shipping_cost
     # serious implementation this is out of the scope the task
