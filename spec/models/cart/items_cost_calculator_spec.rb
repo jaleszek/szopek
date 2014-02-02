@@ -5,14 +5,14 @@ describe Cart::ItemsCostCalculator do
 
   let(:items) do
     [
-      double(price: 5.5),
-      double(price: 100)
+      double(price: 5.5, quantity: 2),
+      double(price: 100, quantity: 1)
     ]
   end
 
   describe '#result' do
-    it 'returns sum of items costs' do
-      expect(subject.result).to eq(105.5)
+    it 'sums multiplied costs of each item' do
+      expect(subject.result).to eq(111)
     end
   end
 

@@ -4,6 +4,6 @@ class Cart::ItemsCostCalculator
   end
 
   def result
-    @items.to_a.sum{ |item| item.price }
+    @items.to_a.sum{ |item| item.price * item.quantity }
   end
 end
