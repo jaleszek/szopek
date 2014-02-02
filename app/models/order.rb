@@ -22,4 +22,8 @@ class Order < ActiveRecord::Base
   def self.create_from_cart(cart)
     create!(cart_id: cart.id)
   end
+
+  def total_cost
+    # TODO: implement
+  end
 end

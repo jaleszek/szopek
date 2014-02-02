@@ -4,7 +4,7 @@ module Payments
     attr_reader :input
 
     METHODS_MAPPING = {
-      'orderID' => :order_identifier,
+      'orderID' => :order_id,
       'STATUS'  => :status,
       'amount'  => :amount,
       'SHA1'    => :checksum
