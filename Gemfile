@@ -39,6 +39,7 @@ group :test do
 end
 
 gem 'state_machine'
+gem 'settingslogic'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

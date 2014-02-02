@@ -1,0 +1,5 @@
+development:
+  payment_endpoint_address: "https://www.secure.fake-payment.com/gateway_prod"
+test:
+  payment_endpoint_address: "http://www.secure.fake-payment.com:443/gateway_prod"
+  
