@@ -5,4 +5,6 @@ class CartItem < ActiveRecord::Base
 
   belongs_to :cart, dependent: :destroy
   belongs_to :item, dependent: :destroy
+
+  delegate :name, :price, to: :item
 end
