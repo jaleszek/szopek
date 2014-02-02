@@ -42,6 +42,7 @@ end
 
 gem 'state_machine'
 gem 'settingslogic'
+gem 'debugger'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
