@@ -18,11 +18,6 @@ class Order < ActiveRecord::Base
     end
   end
 
-  # case when order is present isn't handled
-  def self.create_from_cart(cart)
-    create!(cart_id: cart.id)
-  end
-
   def total_cost
     # TODO: implement
   end

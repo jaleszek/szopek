@@ -31,11 +31,4 @@ describe Order do
       expect(subject).to be_failed
     end
   end
-
-  describe '.create_from_cart' do
-    it 'creates order' do
-      expect(described_class).to receive(:create!)
-      described_class.create_from_cart(double(id: 1))
-    end
-  end
 end
