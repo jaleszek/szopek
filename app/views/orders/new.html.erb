@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+<ul>
+  <%- @cart.cart_items.each do |item| %>
+    <li>
+      name: <%= item.name %><br/>
+      price: <%= item.price %><br/>
+      quantity: <%= item.quantity %><br/>
+      <hr>
+    </li>
+  <% end %>
+
+  Total cost:
+  <%= @cart.total_cost %>
+
+  Shipping cost:
+  <%= @cart.shipping_cost %>
+</ul>
+
+<%= form_tag  cart_orders_path(@cart) do %>
+  <%- @payment_methods.each do |method| %>
+    <%= label_tag(:payment_method, method.name) %>
+    <%= radio_button_tag :payment_method, method.value, method.default %>
+  <% end %>
+
+  <%= submit_tag('Pay now') %>
+<% end %>

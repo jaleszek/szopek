@@ -53,4 +53,7 @@ DeinDealTask::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  resources :carts, only: :none do
+    resources :orders, only: [:new, :create]
+  end
 end
