@@ -14,18 +14,18 @@ describe Payments::ResponseEvaluator do
 
     it 'caches Order object' do
       expect(Order).to receive(:find_by_id).once.and_return(double)
-      2.times { subject.order }
+      2.times{ subject.order }
     end
   end
 
   describe '#success?' do
-    let(:status) { '7' }
-    let(:amount) { 10.0 }
+    let(:status){ '7' }
+    let(:amount){ 10.0 }
     let(:order_open){ true }
     let(:response){ double(order_id: 1, status: status, amount: amount) }
     let(:order){ double(id: 1, total_cost: 10.0, open?: order_open) }
 
-    before { allow(subject).to receive(:order).and_return(order)}
+    before { allow(subject).to receive(:order).and_return(order) }
 
     context 'accepted' do
       it{ expect(subject.success?).to eq(true) }
@@ -47,7 +47,7 @@ describe Payments::ResponseEvaluator do
     end
 
     context 'missing order record' do
-      before { allow(subject).to receive(:order).and_return(nil) }
+      before{ allow(subject).to receive(:order).and_return(nil) }
       it{ expect(subject.success?).to eq(false) }
     end
   end
