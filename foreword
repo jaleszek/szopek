@@ -1,0 +1,40 @@
+# Assumed flow:
+# 1. User goes for the Order checkout page: `/carts/:cart_id/orders/new`.
+# 2. User would like to pay, so clicks 'Pay now' buttton.
+# 3. Form with payment method choice goes to: /carts/:cart_id/orders.
+# 4. Order is created and POST with the form goes to the payments service.
+# 5. Depending on the response from the payments service User:
+#    a) is redirected to payments service and continues payment there,
+#      or
+#    b) is redirected to `/carts/:cart_id/orders/new` when other than `302` status has been returned or any http exceptions occurred.
+
+# 6. User performs payment on the external service.
+# 7. For User redirection after finished transaction, payment service needs to send POST on the `/payments` with transaction parameters (given in the task). 
+#    As the response payment serivce receives redirection status 302 with proper location. Redirection depends on status received from payments gateway.
+#    Redirection location should be processed by payments service and User should be redirected on.
+#    It's worth to remark that everything depends on payments service specification so chosen solution it's rather one of several possible options, kind of demonstration.
+
+
+# Data integrity and other improvements.
+# 1. Assumed that any payment response without exactly matching informations is rejecting.
+#    States which causes rejection:
+     # - wrong checksum in the response,
+     # - success status other than '7',
+     # - mismatch in amounts (between value returned from payments and the Order object),
+     # - order already processed (second payment for already processed Order won't cause any effect),
+     # - wrong `orderid`, missing record in db
+     # It's recommended to deal with this exceptional situations.
+
+# 2. Haven't used db transactions explicitly. Assumed that with such brief insight into business requirements it could be premature.
+
+# Potential improvements of the security, missing features:
+# 1. signed checksum of incoming data is crucial for security,
+# 2. having IP of payments server to prepare whitelist,
+# 3. private key to sign outgoing/authorize incoming data - without signing outgoing it's possible to tamper data,
+# 4. payments#create is open the for external requests (anti-csrf mechanisms disabled) so it would be nice to verify source of incoming requests,
+# 5. storing payment logs (added extended comment in app/models/payments/response_log.rb)
+
+
+# Web Interface preview (tested on Ubuntu 12.10)
+# rake db:seed && rails s
+# localhost:3000/carts/1/orders/new
