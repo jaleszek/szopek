@@ -1,6 +1,6 @@
 describe Payments::ResponseEvaluator do
-  subject { described_class.new(response) }
-  let(:response) { double(order_id: 1) }
+  subject{ described_class.new(response) }
+  let(:response){ double(order_id: 1) }
 
   it 'assigns constructor input to :response' do
     expect(subject.response).to eq(response)
@@ -25,7 +25,7 @@ describe Payments::ResponseEvaluator do
     let(:response){ double(order_id: 1, status: status, amount: amount) }
     let(:order){ double(id: 1, total_cost: 10.0, open?: order_open) }
 
-    before { allow(subject).to receive(:order).and_return(order) }
+    before{ allow(subject).to receive(:order).and_return(order) }
 
     context 'accepted' do
       it{ expect(subject.success?).to eq(true) }

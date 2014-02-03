@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Cart::ItemsCostCalculator do
-  subject { described_class.new(items) }
+  subject{ described_class.new(items) }
 
   let(:items) do
     [

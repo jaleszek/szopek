@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 describe Payments::Response do
-  subject { described_class.new(input) }
+  subject{ described_class.new(input) }
 
-  let(:input) {
+  let(:input){
     {
       "orderID"=>"8",
       "PAYID"=>"769159873",

@@ -1,8 +1,8 @@
 describe Payments::GatewayCaller do
 
-  subject { described_class.new(parameters) }
-  let(:status) { 302 }
-  let(:parameters) { {} }
+  subject{ described_class.new(parameters) }
+  let(:status){ 302 }
+  let(:parameters){ {} }
 
   describe '.new' do
     it 'assigns parameters to :input' do
@@ -20,8 +20,8 @@ describe Payments::GatewayCaller do
     end
 
     context 'success' do
-      let(:response) { double }
-      before { allow(Net::HTTP).to receive(:post_form).and_return(response)}
+      let(:response){ double }
+      before{ allow(Net::HTTP).to receive(:post_form).and_return(response)}
 
       it 'assigns response as :response' do
         subject.call
@@ -30,7 +30,7 @@ describe Payments::GatewayCaller do
     end
 
     context 'in case of exceptions' do
-      before { allow(Net::HTTP).to receive(:post_form).and_raise(Net::HTTPHeaderSyntaxError) }
+      before{ allow(Net::HTTP).to receive(:post_form).and_raise(Net::HTTPHeaderSyntaxError) }
 
       it 'cathes exception and sets response as nil' do
         subject.call

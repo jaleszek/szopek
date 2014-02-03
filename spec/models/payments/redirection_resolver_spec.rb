@@ -1,9 +1,9 @@
 describe Payments::RedirectionResolver do
-  subject { described_class.new(response) }
+  subject{ described_class.new(response) }
 
-  let(:response) { double(code: status, header: {'Location' => location} ) }
-  let(:location) { 'http://localhost:3000' }
-  let(:status)   { '302' }
+  let(:response){ double(code: status, header: {'Location' => location} ) }
+  let(:location){ 'http://localhost:3000' }
+  let(:status){ '302' }
 
   it 'assigns constructor input to :response' do
     expect(subject.response).to eq(response)
@@ -17,7 +17,7 @@ describe Payments::RedirectionResolver do
     end
 
     context 'failure response' do
-      let(:status) { 500 }
+      let(:status){ 500 }
 
       it 'returns nil' do
         expect(subject.redirect_url).to eq(nil)
@@ -25,7 +25,7 @@ describe Payments::RedirectionResolver do
     end
 
     context 'nil input' do
-      let(:response) { nil }
+      let(:response){ nil }
       it 'returns nil' do
         expect(subject.redirect_url).to eq(nil)
       end

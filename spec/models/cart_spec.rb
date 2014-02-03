@@ -1,22 +1,22 @@
 require 'spec_helper'
 
 describe Cart do
-  subject { described_class.new }
+  subject{ described_class.new }
 
   describe 'validations' do
     it{ expect(subject).to validate_presence_of(:user_id) }
   end
 
   describe 'associations' do
-    it { expect(subject).to belong_to(:user) }
-    it { expect(subject).to have_many(:cart_items) }
-    it { expect(subject).to have_many(:items).through(:cart_items) }
-    it { expect(subject).to have_many(:orders) }
+    it{ expect(subject).to belong_to(:user) }
+    it{ expect(subject).to have_many(:cart_items) }
+    it{ expect(subject).to have_many(:items).through(:cart_items) }
+    it{ expect(subject).to have_many(:orders) }
   end
 
   describe '#items_cost' do
-    let(:costs_calculator_class) { Cart::ItemsCostCalculator }
-    let(:costs_calculator) { double(result: 12345) }
+    let(:costs_calculator_class){ Cart::ItemsCostCalculator }
+    let(:costs_calculator){ double(result: 12345) }
 
     it 'passes items collection as argument to calculation class' do
       expect(costs_calculator_class).to receive(:new).with(subject.items).and_return(costs_calculator)
@@ -40,7 +40,7 @@ describe Cart do
   end
 
   describe '#shipping_cost' do
-    it 'is constant' do
+    it 'is always 10.0' do
       expect(subject.shipping_cost).to eq(10.0)
     end
   end
