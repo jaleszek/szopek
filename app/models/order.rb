@@ -19,6 +19,6 @@ class Order < ActiveRecord::Base
   end
 
   def total_cost
-    # TODO: implement
+    cart.total_cost
   end
 end

@@ -33,4 +33,11 @@ describe Order do
       end
     end
   end
+
+  describe 'total_cost' do
+    it 'asks cart about' do
+      expect(subject.cart).to receive(:total_cost)
+      subject.total_cost
+    end
+  end
 end
