@@ -21,5 +21,9 @@ module Payments
     def redirect_url
       Payments::RedirectionResolver.new(response).redirect_url
     end
+
+    def accepted?
+      redirect_url.present?
+    end
   end
 end

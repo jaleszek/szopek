@@ -18,7 +18,5 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def total_cost
-    cart.total_cost
-  end
+  delegate :total_cost, to: :cart
 end

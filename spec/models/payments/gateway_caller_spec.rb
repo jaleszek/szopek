@@ -38,4 +38,12 @@ describe Payments::GatewayCaller do
       end
     end
   end
+
+  describe '#accepted?' do
+    before{ allow(subject).to receive(:redirect_url).and_return(true) }
+
+    it 'is true for success' do
+      expect(subject.accepted?).to eq(true)
+    end
+  end
 end

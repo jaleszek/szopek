@@ -12,21 +12,27 @@ describe Payments::Initializer do
   end
 
   describe '#run' do
-    let(:caller) { double }
+    let(:caller){ double(accepted?: true, call: true) }
+    before{ allow(subject).to receive(:caller).and_return(caller) }
 
     it 'performs request' do
-      allow(subject).to receive(:caller).and_return(caller)
       expect(caller).to receive(:call)
       subject.run
     end
+
+    context 'redirection received' do
+      it 'marks order as sent' do
+        expect(order).to receive(:mark_as_sent)
+        subject.run
+      end
+    end
   end
 
-  describe '#caller' do
-    let(:caller) { double }
-
-    it 'returns gateway caller instance' do
-      allow(Payments::GatewayCaller).to receive(:new).and_return(caller)
-      expect(subject.caller).to eq(caller)
+  describe '#redirect_url' do
+    it 'finds redirection url' do
+      redirect_url = 'localhost'
+      allow_any_instance_of(Payments::GatewayCaller).to receive(:redirect_url).and_return(redirect_url)
+      expect(subject.redirect_url).to eq(redirect_url)
     end
   end
 end
