@@ -4,6 +4,8 @@ describe Payments::Initializer do
   let(:order) { build(:order) }
   let(:method) { Payments::Method.all.last.value }
 
+  before{ allow(order).to receive(:cart).and_return(double(total_cost: 10)) }
+
   describe '.new' do
     it { expect(subject.order).to eq(order) }
     it { expect(subject.method).to eq(method)}
