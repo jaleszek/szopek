@@ -9,7 +9,7 @@ class Cart < ActiveRecord::Base
   has_many :orders
 
   def shipping_cost
-    # serious implementation this is out of the scope the task
+    # implementation of this method is beyond the task's scope
     10.0
   end
 

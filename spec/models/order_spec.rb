@@ -34,7 +34,7 @@ describe Order do
     end
   end
 
-  describe 'total_cost' do
+  describe '#total_cost' do
     it 'asks cart about' do
       expect(subject.cart).to receive(:total_cost)
       subject.total_cost
