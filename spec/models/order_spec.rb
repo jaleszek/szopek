@@ -35,7 +35,8 @@ describe Order do
   end
 
   describe '#total_cost' do
-    it 'asks cart about' do
+    it 'delegates total cost to the cart' do
+      allow(subject).to receive(:cart).and_return(double)
       expect(subject.cart).to receive(:total_cost)
       subject.total_cost
     end
