@@ -8,20 +8,10 @@ class PaymentsController < ApplicationController
   after_filter :store_payment_log, only: :create
 
   def create
-    response = Payments::Response.new(params)
-    evaluator = Payments::ResponseEvaluator.new(response)
+    payment = PaymentsHandler.new(params)
+    payment.perform
 
-    order = evaluator.order
-
-    if evaluator.success?
-      order.mark_as_paid
-      redirection_url = success_payments_path
-    else
-      order.try(:mark_as_failed)
-      redirection_url = failure_payments_path
-    end
-
-    redirect_to redirection_url
+    redirect_to (payment.success? ? success_payments_path : failure_payments_path)
   end
 
   def failure
