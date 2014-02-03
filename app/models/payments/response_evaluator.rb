@@ -6,8 +6,8 @@ module Payments
       @response = response
     end
 
-    def succeed?
-      succeed_status? && checksum_matches? && order_matches?
+    def success?
+      success_status? && checksum_matches? && order_matches?
     end
 
     def order
@@ -25,7 +25,7 @@ module Payments
       order.present? && not_processed_yet? && amount_matches?
     end
 
-    def succeed_status?
+    def success_status?
       response.status == '7'
     end
 

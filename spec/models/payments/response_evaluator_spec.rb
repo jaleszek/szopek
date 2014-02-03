@@ -18,38 +18,37 @@ describe Payments::ResponseEvaluator do
     end
   end
 
-  describe '#succeed?' do
-    let(:response){ double(order_id: 1, status: '7', amount: 10.0) }
-    let(:order) { double(id: 1, total_cost: 10.0, open?: true)}
+  describe '#success?' do
+    let(:status) { '7' }
+    let(:amount) { 10.0 }
+    let(:order_open){ true }
+    let(:response){ double(order_id: 1, status: status, amount: amount) }
+    let(:order){ double(id: 1, total_cost: 10.0, open?: order_open) }
 
     before { allow(subject).to receive(:order).and_return(order)}
 
-    context 'success' do
-      it{ expect(subject.succeed?).to eq(true) }
+    context 'accepted' do
+      it{ expect(subject.success?).to eq(true) }
     end
 
     context 'wrong status' do
-      before { allow(response).to receive(:status).and_return('10') }
-
-      it{ expect(subject.succeed?).to eq(false) }
+      let(:status) { '10' }
+      it{ expect(subject.success?).to eq(false) }
     end
 
     context 'amount mismatch' do
-      before { allow(response).to receive(:amount).and_return(987)}
-
-      it{ expect(subject.succeed?).to eq(false) }
+      let(:amount) { 1000 }
+      it{ expect(subject.success?).to eq(false) }
     end
 
     context 'order already processed' do
-      before { allow(order).to receive(:open?).and_return(false)}
-
-      it{ expect(subject.succeed?).to eq(false) }
+      let(:order_open) { false }
+      it{ expect(subject.success?).to eq(false) }
     end
 
     context 'missing order record' do
       before { allow(subject).to receive(:order).and_return(nil) }
-
-      it{ expect(subject.succeed?).to eq(false) }
+      it{ expect(subject.success?).to eq(false) }
     end
   end
 end
