@@ -30,11 +30,11 @@ module Payments
     end
 
     def amount_matches?
-      order.total_cost == response.amount
+      order.total_cost == BigDecimal.new(response.amount)
     end
 
     def not_processed_yet?
-      order.open?
+      order.sent?
     end
   end
 end

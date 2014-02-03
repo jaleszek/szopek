@@ -20,10 +20,10 @@ describe Payments::ResponseEvaluator do
 
   describe '#success?' do
     let(:status){ '7' }
-    let(:amount){ 10.0 }
-    let(:order_open){ true }
+    let(:amount){ '10.0' }
+    let(:order_sent){ true }
     let(:response){ double(order_id: 1, status: status, amount: amount) }
-    let(:order){ double(id: 1, total_cost: 10.0, open?: order_open) }
+    let(:order){ double(id: 1, total_cost: 10.0, sent?: order_sent) }
 
     before{ allow(subject).to receive(:order).and_return(order) }
 
@@ -42,7 +42,7 @@ describe Payments::ResponseEvaluator do
     end
 
     context 'order already processed' do
-      let(:order_open) { false }
+      let(:order_sent) { false }
       it{ expect(subject.success?).to eq(false) }
     end
 
