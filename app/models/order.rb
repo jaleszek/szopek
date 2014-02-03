@@ -6,15 +6,15 @@ class Order < ActiveRecord::Base
 
   state_machine :status, initial: :open do
     event :mark_as_sent do
-      transition :open => :sent
+      transition open: :sent
     end
 
     event :mark_as_paid do
-      transition :sent => :paid
+      transition sent: :paid
     end
 
     event :mark_as_failed do
-      transition :sent => :failed
+      transition sent: :failed
     end
   end
 

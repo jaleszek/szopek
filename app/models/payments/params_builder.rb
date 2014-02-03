@@ -14,13 +14,13 @@ module Payments
 
     def build
       {
-        :accept_url => '/payment/success',
-        :amount => order.total_cost,
-        :backurl => Settings.payment_handler_url,
-        :exception_url  =>  '/payment/failure',
-        :language => I18n.locale,
-        :orderid => order.id,
-        :pm => method.value
+        accept_url: '/payment/success',
+        amount: order.total_cost,
+        backurl: Settings.payment_handler_url,
+        exception_url: '/payment/failure',
+        language: I18n.locale,
+        orderid: order.id,
+        pm: method.value
       }
     end
   end
