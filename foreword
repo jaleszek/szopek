@@ -9,14 +9,12 @@
 #    b) is redirected to `/carts/:cart_id/orders/new` when other than `302` status has been returned or any http exceptions occurred.
 
 # 6. User performs payment on the external service.
-# 7. For User redirection after finished transaction, payment service needs to send POST on the `/payments` with transaction parameters (given in the task). 
-#    As the response payment serivce receives redirection status 302 with proper location. Redirection depends on status received from payments gateway.
-#    Redirection location should be processed by payments service and User should be redirected on.
-#    It's worth to remark that everything depends on payments service specification so chosen solution it's rather one of several possible options, kind of demonstration.
+# 7. Payment service redirects User on the `/payments/finish` with transaction parameters (given in the task).
+# 8. User is redirected to the `/payments/success` or `/payments/failure` according to received status.
 
 
 # Data integrity and other improvements.
-# 1. Assumed that any payment response without exactly matching informations is rejecting.
+# 1. Assumed that any payment response without exactly matching informations is not valid.
 #    States which causes rejection:
      # - wrong checksum in the response,
      # - success status other than '7',
@@ -31,8 +29,7 @@
 # 1. signed checksum of incoming data is crucial for security,
 # 2. having IP of payments server to prepare whitelist,
 # 3. private key to sign outgoing/authorize incoming data - without signing outgoing it's possible to tamper data,
-# 4. payments#create is open the for external requests (anti-csrf mechanisms disabled) so it would be nice to verify source of incoming requests,
-# 5. storing payment logs (added extended comment in app/models/payments/response_log.rb)
+# 4. storing payment logs (added extended comment in app/models/payments/response_log.rb)
 
 
 # Web Interface preview (tested on Ubuntu 12.10)
