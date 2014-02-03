@@ -6,5 +6,13 @@ class CartItem < ActiveRecord::Base
   belongs_to :cart
   belongs_to :item
 
-  delegate :name, :price, to: :item
+  def unit_price
+    item.price
+  end
+
+  def price
+    unit_price * quantity
+  end
+
+  delegate :name, to: :item
 end

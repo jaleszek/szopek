@@ -21,4 +21,21 @@ describe CartItem do
       expect(subject.quantity).to eq(1)
     end
   end
+
+  describe '#unit_price' do
+    before{ allow(subject).to receive(:item).and_return(double(price: 10.0)) }
+
+    it 'equals price of related item' do
+      expect(subject.unit_price).to eq(10.0)
+    end
+  end
+
+  describe '#price' do
+    subject{ build(:cart_item) }
+    before{ allow(subject).to receive(:item).and_return(double(price: 10.0)) }
+
+    it 'multiplies quantity and unit price' do
+      expect(subject.price).to eq(subject.unit_price*subject.quantity)
+    end
+  end
 end
