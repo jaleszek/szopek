@@ -16,7 +16,7 @@ module Payments
       {
         :accept_url => '/payment/success',
         :amount => order.total_cost,
-        :backurl => order_payments_url(order),
+        :backurl => Settings.payment_handler_url,
         :exception_url  =>  '/payment/failure',
         :language => I18n.locale,
         :orderid => order.id,

@@ -8,5 +8,9 @@ module Payments
         new('PAYPAL', 'paypal', false)
       ]
     end
+
+    def self.find_by_value(value)
+      all.select{ |method| method.value == value }.first
+    end
   end
 end

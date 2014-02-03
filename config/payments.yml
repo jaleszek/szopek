@@ -1,5 +1,7 @@
 development:
   payment_endpoint_address: "https://www.secure.fake-payment.com/gateway_prod"
+  payment_handler_url: "http://localhost:3000/payments"
 test:
   payment_endpoint_address: "http://www.secure.fake-payment.com:443/gateway_prod"
+  payment_handler_url: "http://localhost:3000/payments"
   
