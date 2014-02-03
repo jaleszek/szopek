@@ -17,26 +17,9 @@ module Payments
         @response = nil
       end
     end
-  end
-end
-
-
-module Payments
-  class RedirectionResolver
-    attr_reader :response
-
-    def initialize(response)
-      @response = response
-    end
 
     def redirect_url
-      response.header['Location'] if redirection_response_code?
-    end
-
-    private
-
-    def redirection_response_code?
-      response.try(:code) == '302'
+      Payments::RedirectionResolver.new(response).redirect_url
     end
   end
 end
