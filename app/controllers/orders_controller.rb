@@ -11,13 +11,13 @@ class OrdersController < ApplicationController
     if order.save
       payment = Payments::Initializer.new(order, params[:payment_method])
       payment.run
+      redirection_url = payment.caller.redirect_url
 
-      if redirect = payment.caller.redirect_url
-        redirect_to redirect and return
-      end
+      order.mark_as_sent if redirection_url
     end
 
-    redirect_to new_cart_order_path(current_cart)
+    redirection_url ||= new_cart_order_path(current_cart)
+    redirect_to redirection_url
   end
 
   private
