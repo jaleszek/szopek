@@ -1,10 +1,11 @@
-# Action #create is open for every external request because anti-csrf mechanisms are disabled.
-# Way of veryfing if given requests came from trusted source depends on payments specification.
-# It can use whitelist, some checksum, token.
+# CSRF protection mechanisms disabled
+# it would be nice to handle with it
+# ...or maybe GET would be better, there is no CSRF protection, everything depends on the payments specification
 
 class PaymentsController < ApplicationController
   skip_before_filter :verify_authenticity_token, only: :create
   before_filter :verify_custom_authenticity_token, only: :create
+
   after_filter :store_payment_log, only: :create
 
   def create
@@ -24,8 +25,8 @@ class PaymentsController < ApplicationController
 
   private
 
+  # checks whether the request comes from a trusted source
   def verify_custom_authenticity_token
-    # checks whether the request comes from a trusted source
     true
   end
 

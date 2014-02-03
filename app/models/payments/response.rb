@@ -1,4 +1,3 @@
-# wraps needed to further processing informations with methods
 module Payments
   class Response
     attr_reader :input

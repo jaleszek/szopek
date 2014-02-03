@@ -1,5 +1,3 @@
-require 'net/http'
-
 module Payments
   class GatewayCaller
     attr_reader :input, :response

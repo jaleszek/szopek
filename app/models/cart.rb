@@ -1,5 +1,3 @@
-# missing feature: quantity incrementation
-
 class Cart < ActiveRecord::Base
   validates :user_id, presence: true
 
@@ -8,8 +6,8 @@ class Cart < ActiveRecord::Base
   has_many :items, through: :cart_items
   has_many :orders
 
+  # implementation of this method is beyond the task's scope
   def shipping_cost
-    # implementation of this method is beyond the task's scope
     10.0
   end
 

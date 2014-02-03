@@ -1,6 +1,5 @@
 # Assumed that after payment processing on the external service redirection from payments goes on :backurl param.
 # Further redirection on success/failure is based on response status, :order_payments_url deals with it.
-
 module Payments
   class ParamsBuilder
     include Rails.application.routes.url_helpers

@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
     end
 
     redirect_to(payment.redirect_url || new_cart_order_path(current_cart))
-    end
+  end
 
   private
 

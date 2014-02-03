@@ -1,5 +1,3 @@
-# probably could be an ActiveRecord model but because of
-# no requirements, left without adding dependencies yet
 module Payments
   class Method < Struct.new(:name, :value, :default)
     def self.all
@@ -14,3 +12,7 @@ module Payments
     end
   end
 end
+
+# probably could be an ActiveRecord model but because of
+# no requirements, left without adding dependencies yet
+
