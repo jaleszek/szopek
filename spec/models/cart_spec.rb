@@ -9,7 +9,7 @@ describe Cart do
 
   describe 'associations' do
     it{ expect(subject).to belong_to(:user) }
-    it{ expect(subject).to have_many(:cart_items) }
+    it{ expect(subject).to have_many(:cart_items).dependent(:destroy) }
     it{ expect(subject).to have_many(:items).through(:cart_items) }
     it{ expect(subject).to have_many(:orders) }
   end

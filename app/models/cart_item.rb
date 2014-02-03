@@ -3,8 +3,8 @@ class CartItem < ActiveRecord::Base
   validates :item_id, presence: true
   validates :quantity, presence: true
 
-  belongs_to :cart, dependent: :destroy
-  belongs_to :item, dependent: :destroy
+  belongs_to :cart
+  belongs_to :item
 
   delegate :name, :price, to: :item
 end

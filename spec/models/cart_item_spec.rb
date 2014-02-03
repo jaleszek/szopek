@@ -12,8 +12,8 @@ describe CartItem do
   end
 
   describe 'associations' do
-    it{ expect(subject).to belong_to(:cart).dependent(:destroy) }
-    it{ expect(subject).to belong_to(:item).dependent(:destroy) }
+    it{ expect(subject).to belong_to(:cart) }
+    it{ expect(subject).to belong_to(:item) }
   end
 
   context 'initialy' do
