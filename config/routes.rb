@@ -57,8 +57,9 @@ DeinDealTask::Application.routes.draw do
     resources :orders, only: [:new, :create]
   end
 
-  resources :payments, only: [:create] do
+  resources :payments, only: :none do
     collection do
+      get :finish
       get :failure
       get :success
     end

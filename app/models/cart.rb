@@ -18,4 +18,8 @@ class Cart < ActiveRecord::Base
   def total_cost
     items_cost + shipping_cost
   end
+
+  def build_order
+    orders.build
+  end
 end

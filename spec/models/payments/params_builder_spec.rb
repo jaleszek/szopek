@@ -17,7 +17,6 @@ describe Payments::ParamsBuilder do
 
       it{ expect(subject[:accept_url]).to be_present }
       it{ expect(subject[:amount]).to eq(order.total_cost) }
-      it{ expect(subject[:backurl]).to be_present }
       it{ expect(subject[:orderid]).to eq(order.id) }
       it{ expect(subject[:pm]).to eq(method.value) }
     end

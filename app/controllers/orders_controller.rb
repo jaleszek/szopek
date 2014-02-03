@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    order = current_cart.orders.build
+    order = current_cart.build_order
 
     if order.save
       payment = Payments::Initializer.new(order, params[:payment_method])
